@@ -5,10 +5,13 @@
 # Godot-specific ignores
 .import/
 export.cfg
-export_presets.cfg
+# export_presets.cfg
 
-# godot export folder
-.exports/
+# Godot export folder (need the html dir for gh-actions godot build to work)
+.exports/*
+!.exports/html
+.exports/html/*
+!.exports/html/.gitkeep
 
 # Imported translations (automatically generated from CSV files)
 *.translation
