@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=3 uid="uid://gy0o7twvgvi5"]
+
+[ext_resource type="Script" path="res://scenes/levels/main.gd" id="1_1d8g2"]
+[ext_resource type="Script" path="res://components/game-window-controller.component.gd" id="1_m8uwc"]
+[ext_resource type="PackedScene" uid="uid://b4fjcsvexg1jl" path="res://components/debug/sbx_lab.tscn" id="2_k5gnr"]
+[ext_resource type="TileSet" uid="uid://bharj5o7bmhwc" path="res://assets/kenney-dungeon-rail_wang-fence-inside-corners_TileSet.tres" id="3_olale"]
+[ext_resource type="Script" path="res://components/debug/tile-map-debug.component.gd" id="3_vkdyo"]
+[ext_resource type="PackedScene" uid="uid://ctah1w1bu5a3r" path="res://scenes/mine-cart/mine_cart.tscn" id="5_s8y7k"]
+[ext_resource type="PackedScene" uid="uid://bhm10p5o4dt6c" path="res://scenes/ui/control_scheme_menu.tscn" id="6_ch5pl"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_74uti"]
+
+[node name="Main" type="Node2D" node_paths=PackedStringArray("menu")]
+script = ExtResource("1_1d8g2")
+menu = NodePath("CanvasLayer/ControlSchemeMenu")
+
+[node name="SBX-LAB" parent="." instance=ExtResource("2_k5gnr")]
+position = Vector2(-8, 48)
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("3_olale")
+format = 2
+layer_0/tile_data = PackedInt32Array(131067, 1, 1, 131070, 1, 1, 65534, 1, 1, -2, 131073, 1, -65538, 1, 1, -131067, 65537, 1, -65531, 1, 1, 5, 65537, 2, 131077, 65537, 0, 196613, 196609, 1, 262137, 1, 1, 327673, 1, 1, 393209, 1, 1, 458745, 65537, 2, 458746, 131073, 3, 458747, 131073, 3, 458748, 131073, 3, 458749, 131073, 3, 458750, 131073, 3, 458751, 131073, 3, 393216, 131073, 2, 393217, 131073, 3, 393218, 131073, 2, 393219, 131073, 3, 393220, 131073, 3, 393221, 196609, 2, 327685, 1, 1, 196610, 131073, 1, 196611, 131073, 3, 196612, 131073, 3, 327682, 1, 1, 262146, 1, 1, 131074, 1, 1, 196609, 131073, 3, 196608, 65537, 2, 131072, 1, 1, 65536, 65537, 0, 65537, 131073, 3, 65538, 196609, 0, 196603, 196609, 1, 262139, 1, 1, 327675, 65537, 2, 327676, 131073, 3, 327677, 131073, 3, 327678, 196609, 2, 262142, 1, 1, 196606, 1, 1, 262149, 1, 1, -131074, 65537, 0, -131073, 131073, 3, -196608, 131073, 3, -196607, 131073, 3, -196606, 131073, 3, -196605, 131073, 3, -196604, 131073, 3, -196603, 196609, 0, -1, 131073, 3, -65536, 196609, 3, -3, 131073, 3, -4, 65537, 3, 393204, 1, 1, 327668, 1, 1, 262132, 1, 1, 196596, 1, 1, 131060, 1, 1, 65524, 65537, 0, 131082, 1, 1, 196618, 1, 1, 262154, 196609, 1, 327690, 1, 1, 393226, 1, 1, 458762, 1, 1, 65528, 131073, 3, 10, 196609, 0, 9, 131073, 2, 8, 131073, 3, 7, 131073, 0, 6, 131073, 3, 65546, 1, 1, 524276, 1, 1, 458740, 1, 1, 65543, 1, 1, 65529, 131073, 3, 65530, 131073, 3, 65531, 196609, 0, 196602, 131073, 3, 196601, 65537, 0, -65527, 1, 1, -196601, 65537, 0, -131066, 131073, 3, 65526, 131073, 0, -196600, 131073, 3, -196599, 196609, 0, 131079, 196609, 2, 131078, 131073, 3, -131063, 1, 1, -131065, 196609, 2, 589812, 65537, 2, 589813, 131073, 3, 589814, 131073, 3, 589815, 131073, 2, 589816, 131073, 3, 589817, 131073, 3, 589818, 131073, 3, 589819, 131073, 3, 589820, 131073, 3, 589821, 131073, 3, 589822, 131073, 3, 589823, 131073, 3, 524288, 131073, 3, 524289, 131073, 3, 524290, 131073, 3, 524291, 131073, 3, 524292, 131073, 3, 524293, 131073, 3, 524294, 131073, 3, 524295, 131073, 2, 524296, 131073, 3, 524297, 131073, 3, 524298, 196609, 2, 524279, 1, 1, 262153, 131073, 3, 262152, 65537, 3, 458759, 1, 1, 327680, 1, 0, 393223, 1, 0, 65527, 131073, 3, 65525, 131073, 3, 131062, 1, 1, 196598, 65537, 2, 196599, 196609, 0, 262135, 1, 1, 327671, 196609, 2, 327670, 65537, 0, 393206, 1, 1, 458742, 65537, 2, 458743, 196609, 0)
+
+[node name="TileMapDebugComponent" type="Node" parent="TileMap" node_paths=PackedStringArray("tile_map")]
+script = ExtResource("3_vkdyo")
+tile_map = NodePath("..")
+show_debug_info = false
+
+[node name="MineCart" parent="." node_paths=PackedStringArray("tile_map") instance=ExtResource("5_s8y7k")]
+position = Vector2(-24, 24)
+tile_map = NodePath("../TileMap")
+debug_enable = false
+
+[node name="GameWindowControllerComponent" type="Node" parent="."]
+script = ExtResource("1_m8uwc")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="ControlsLabel" type="Label" parent="CanvasLayer"]
+offset_left = -192.0
+offset_top = -59.0
+offset_right = 17.0
+offset_bottom = -10.0
+scale = Vector2(0.500293, 0.500293)
+text = "ESC = Menu/Controls
+F11 = Toggle Fullscreen"
+
+[node name="TitleLabel" type="Label" parent="CanvasLayer"]
+offset_left = -192.0
+offset_top = 144.0
+offset_right = 17.0
+offset_bottom = 193.0
+scale = Vector2(0.500293, 0.500293)
+text = "Minecart Tile Movement POC"
+
+[node name="ControlSchemeMenu" parent="CanvasLayer" instance=ExtResource("6_ch5pl")]
+visible = false
+offset_left = -200.0
+offset_top = -64.0
+offset_right = -584.0
+offset_bottom = -264.0
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+button_group = SubResource("ButtonGroup_74uti")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+color = Color(0.129412, 0.207843, 0.27451, 1)

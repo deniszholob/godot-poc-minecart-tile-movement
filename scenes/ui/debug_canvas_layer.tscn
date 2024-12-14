@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://ctsiqj5ma2hj8"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+scale = Vector2(0.5, 0.5)
+transform = Transform2D(0.5, 0, 0, 0.5, 0, 0)
+follow_viewport_enabled = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = -368.0
+offset_top = -208.0
+offset_right = -171.0
+offset_bottom = -23.0
+
+[node name="HBoxState" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="StateLabel" type="Label" parent="VBoxContainer/HBoxState"]
+layout_mode = 2
+text = "State: "
+
+[node name="StateLabelValue" type="Label" parent="VBoxContainer/HBoxState"]
+layout_mode = 2
+text = "0"
+
+[node name="HBoxIntendedDirection" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="IndendedDirectionLabel" type="Label" parent="VBoxContainer/HBoxIntendedDirection"]
+layout_mode = 2
+text = "Intended Direction: "
+
+[node name="IndendedDirectionLabelValue" type="Label" parent="VBoxContainer/HBoxIntendedDirection"]
+layout_mode = 2
+text = "0"
+
+[node name="HBoxIntendedAcceleration" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="IndendedAccelerationLabel" type="Label" parent="VBoxContainer/HBoxIntendedAcceleration"]
+layout_mode = 2
+text = "Intended Acceleration: "
+
+[node name="IndendedAccelerationLabelValue" type="Label" parent="VBoxContainer/HBoxIntendedAcceleration"]
+layout_mode = 2
+text = "0"
+
+[node name="HBoxDirection" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="DirectionLabel" type="Label" parent="VBoxContainer/HBoxDirection"]
+layout_mode = 2
+text = "Direction: "
+
+[node name="DirectionLabelValue" type="Label" parent="VBoxContainer/HBoxDirection"]
+layout_mode = 2
+text = "0"
+
+[node name="HBoxAcceleration" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="AccelerationLabel" type="Label" parent="VBoxContainer/HBoxAcceleration"]
+layout_mode = 2
+text = "Acceleration: "
+
+[node name="AccelerationLabelValue" type="Label" parent="VBoxContainer/HBoxAcceleration"]
+layout_mode = 2
+text = "0"
+
+[node name="HBoxSpeed" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="SpeedLabel" type="Label" parent="VBoxContainer/HBoxSpeed"]
+layout_mode = 2
+text = "Speed: "
+
+[node name="SpeedLabelValue" type="Label" parent="VBoxContainer/HBoxSpeed"]
+layout_mode = 2
+text = "0"
+
+[node name="HBoxVelocity" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="VelocityLabel" type="Label" parent="VBoxContainer/HBoxVelocity"]
+layout_mode = 2
+text = "Velocity: "
+
+[node name="VelocityLabelValue" type="Label" parent="VBoxContainer/HBoxVelocity"]
+layout_mode = 2
+text = "0"

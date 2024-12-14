@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MineCartModel" load_steps=2 format=3 uid="uid://bxl0dq7ghfh0v"]
+
+[ext_resource type="Script" path="res://scenes/mine-cart/mine-cart-stats.model.gd" id="1_2yd37"]
+
+[resource]
+script = ExtResource("1_2yd37")
+TOP_SPEED = 2
+ACCELERATION = 2
+BRAKE = null
+SLOWDOWN = null
+STOP_THRESHOLD = 0.01

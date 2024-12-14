@@ -1,0 +1,143 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhm10p5o4dt6c"]
+
+[ext_resource type="Script" path="res://scenes/ui/control_scheme_menu.gd" id="1_bw8gi"]
+[ext_resource type="ButtonGroup" uid="uid://ci3des8xph7u4" path="res://scenes/ui/button-group_control-scheme.tres" id="1_fnbp6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7b7sr"]
+bg_color = Color(0.242, 0.416533, 0.55, 1)
+
+[node name="ControlSchemeMenu" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7b7sr")
+script = ExtResource("1_bw8gi")
+button_group = ExtResource("1_fnbp6")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="ControlType" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Control Type"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Character" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("1_fnbp6")
+text = "Character"
+
+[node name="Vehicle_Relative" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("1_fnbp6")
+text = "Vehicle (Relative)"
+
+[node name="Vehicle_Absolute" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("1_fnbp6")
+text = "Vehicle (Absolute)"
+
+[node name="CharacterControlText" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "W: Move Up
+S: Move Down
+A: Move Left
+D: Move Right
+
+Notes:
+* \"Move\" combines turning and acceleration/braking
+* Similar to Core Keeper
+
+* Pros: More intuitive controls
+* Cons: Have to actively switch wich key is held on turns to keep speed up"
+fit_content = true
+
+[node name="VehicleRelativeControlText" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "W: Accelerate
+S: Brake
+A: Turn Left
+D: Turn Right
+
+Notes:
+* \"Turn\" is relative to direction of travel
+* Similar to Factorio or RC control
+
+Pros: Can just hold the acceleration button to go any direction until a turn is needed
+Cons: Turning challanging whn vehicle is not facing up"
+fit_content = true
+
+[node name="VehicleAbsoluteControlText" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "W: Head Up
+S: Head Down
+A: Head Left
+D: Head Right
+SHIFT: Accelerate
+SPACE: Brake
+
+Notes: 
+* Heading is the intention of travel
+
+Pros: Combines the one key acceleration and intuitive directions
+Cons: More control keys to use in general"
+fit_content = true
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Exit Game"
+
+[node name="Space" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Back (ESC)"
+
+[node name="Space2" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="LightsButton" type="CheckButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Lights"
+
+[node name="DebugButton" type="CheckButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+text = "Debug"

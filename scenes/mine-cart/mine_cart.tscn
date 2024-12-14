@@ -1,0 +1,106 @@
+[gd_scene load_steps=14 format=3 uid="uid://ctah1w1bu5a3r"]
+
+[ext_resource type="Script" path="res://scenes/mine-cart/mine_cart.gd" id="1_5bbny"]
+[ext_resource type="Texture2D" uid="uid://dit0v1dnd4e8s" path="res://assets/mine-cart.png" id="2_2w2eh"]
+[ext_resource type="Script" path="res://components/movement/mine-cart-controller.component.gd" id="2_nd2vl"]
+[ext_resource type="Script" path="res://components/input/input-device-direction.component.gd" id="3_avyul"]
+[ext_resource type="Resource" uid="uid://bxl0dq7ghfh0v" path="res://scenes/mine-cart/mine-cart-stats.data.tres" id="4_p6375"]
+[ext_resource type="Script" path="res://components/movement/move-character-sprite-animation-rotation.component.gd" id="4_s2lad"]
+[ext_resource type="PackedScene" uid="uid://dccjas1dbwg5e" path="res://scenes/mine-cart/tile_select.tscn" id="7_aoewr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rn0df"]
+size = Vector2(10, 10)
+
+[sub_resource type="Gradient" id="Gradient_fy1yf"]
+interpolation_mode = 2
+interpolation_color_space = 1
+offsets = PackedFloat32Array(0, 0.137615, 0.672783)
+colors = PackedColorArray(1, 1, 1, 1, 0.5, 0.5, 0.5, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_n8u6w"]
+gradient = SubResource("Gradient_fy1yf")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_akb43"]
+gradient = SubResource("Gradient_fy1yf")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_po7sx"]
+offsets = PackedFloat32Array(0, 0.262997, 0.64526)
+colors = PackedColorArray(1, 1, 1, 1, 0.470076, 0.470076, 0.470076, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wl34t"]
+gradient = SubResource("Gradient_po7sx")
+fill = 1
+fill_from = Vector2(0.495726, 0.495726)
+
+[node name="MineCart" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("1_5bbny")
+debug_enable = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_2w2eh")
+hframes = 2
+vframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_rn0df")
+
+[node name="MineCartControllerComponent" type="Node" parent="." node_paths=PackedStringArray("actor", "input_device_direction", "move_character_sprite_animation_rotation_component")]
+script = ExtResource("2_nd2vl")
+actor = NodePath("..")
+input_device_direction = NodePath("../InputDeviceDirectionComponent")
+move_character_sprite_animation_rotation_component = NodePath("../MoveCharacterSpriteAnimationRotationComponent")
+stats = ExtResource("4_p6375")
+
+[node name="InputDeviceDirectionComponent" type="Node" parent="."]
+script = ExtResource("3_avyul")
+
+[node name="MoveCharacterSpriteAnimationRotationComponent" type="Node" parent="." node_paths=PackedStringArray("sprite", "pivot")]
+script = ExtResource("4_s2lad")
+sprite = NodePath("../Sprite2D")
+frame_start_direction = 2
+pivot = NodePath("../Pivot")
+
+[node name="Pivot" type="Node2D" parent="."]
+
+[node name="Lights" type="Node2D" parent="Pivot"]
+visible = false
+
+[node name="PointLight2DFront" type="PointLight2D" parent="Pivot/Lights"]
+position = Vector2(-0.480142, -40.8401)
+scale = Vector2(0.234996, 1.03625)
+color = Color(1, 0.819608, 0.54902, 1)
+energy = 1.5
+texture = SubResource("GradientTexture2D_n8u6w")
+
+[node name="PointLight2DBack" type="PointLight2D" parent="Pivot/Lights"]
+position = Vector2(0, 19)
+scale = Vector2(0.135412, 0.355167)
+color = Color(1, 0, 0, 1)
+texture = SubResource("GradientTexture2D_akb43")
+
+[node name="PointLight2DGlow" type="PointLight2D" parent="Pivot/Lights"]
+color = Color(1, 0.819608, 0.54902, 1)
+texture = SubResource("GradientTexture2D_wl34t")
+
+[node name="MineCartDebug" type="Node2D" parent="."]
+
+[node name="FaceDirectionRay" type="RayCast2D" parent="MineCartDebug"]
+modulate = Color(0, 0.64, 0.8, 1)
+target_position = Vector2(0, -16)
+collision_mask = 0
+collide_with_bodies = false
+
+[node name="IntendedDirectionRay" type="RayCast2D" parent="MineCartDebug"]
+modulate = Color(0.831373, 0.164706, 0, 1)
+target_position = Vector2(0, -16)
+collision_mask = 0
+collide_with_bodies = false
+
+[node name="TileSelectNode2D" parent="MineCartDebug" instance=ExtResource("7_aoewr")]
