@@ -73,17 +73,17 @@
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
     "files.exclude": {
-        "**/*.dev": false,
-        "**/*.godot": false,
-        "**/*.exports": false,
-        "**/*.import": false,
-        "**/*.screenshots": false,
-        "**/dist/": false,
-        "**/.editorconfig": false,
-        "**/.gitattributes": false,
-        "**/.gitignore": false,
-        "**/.gitkeep": false,
-        "**/.gitlab-ci.yml": false
+        "**/*.dev": true,
+        "**/*.godot": true,
+        "**/*.exports": true,
+        "**/*.import": true,
+        "**/*.screenshots": true,
+        "**/dist/": true,
+        "**/.editorconfig": true,
+        "**/.gitattributes": true,
+        "**/.gitignore": true,
+        "**/.gitkeep": true,
+        "**/.gitlab-ci.yml": true
     },
     "cSpell.words": [
         "minecart"
