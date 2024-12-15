@@ -18,26 +18,54 @@ jobs:
       - name: Get Godot Version
         run: echo "GODOT_VERSION=$(grep '^config/features' project.godot | cut -d "\"" -f 2)" >> $GITHUB_ENV
 
-      - name: Download Godot
+      # Cache Godot Application
+      - name: Cache Godot
+        id: cache-godot
+        uses: actions/cache@v4
+        with:
+          path: ./godot
+          key: godot-${{ env.GODOT_VERSION }}
+
+      - name: Download Godot (if cache miss)
+        if: steps.cache-godot.outputs.cache-hit != 'true'
         run: |
+          echo "Downloading Godot..."
           curl -L -o godot.zip https://downloads.tuxfamily.org/godotengine/$GODOT_VERSION/Godot_v$GODOT_VERSION-stable_linux.x86_64.zip
           unzip godot.zip
           mv Godot_v$GODOT_VERSION-stable_linux.x86_64 godot
           chmod +x godot
 
-      - name: Download Godot Export Templates
-        run: |
-          curl -L -o export_templates.zip https://downloads.tuxfamily.org/godotengine/$GODOT_VERSION/Godot_v$GODOT_VERSION-stable_export_templates.tpz
-          unzip export_templates.zip
+      # Cache Godot Export Templates
+      - name: Set Up Templates Cache Directory
+        run: mkdir -p godot-templates
 
-      - name: Install Export Templates
+      - name: Cache Godot Export Templates
+        id: cache-templates
+        uses: actions/cache@v4
+        with:
+          path: godot-templates
+          key: godot-export-templates-${{ env.GODOT_VERSION }}
+
+      - name: Download Godot Export Templates (if cache miss)
+        if: steps.cache-templates.outputs.cache-hit != 'true'
+        run: |
+          echo "Downloading Export Templates..."
+          curl -L -o export_templates.zip https://downloads.tuxfamily.org/godotengine/$GODOT_VERSION/Godot_v$GODOT_VERSION-stable_export_templates.tpz
+          unzip export_templates.zip -d godot-templates
+
+      - name: Copy Templates to Godot Directory
         run: |
           mkdir -p ~/.local/share/godot/export_templates/$GODOT_VERSION.stable
-          mv ./templates/* ~/.local/share/godot/export_templates/$GODOT_VERSION.stable
+          cp -r godot-templates/templates/* ~/.local/share/godot/export_templates/$GODOT_VERSION.stable
+
+      - name: Prepare Export Directory
+        run: mkdir -p .exports/html
 
       - name: Build
         run: |
           ./godot --headless --export-release html
+          echo "Exported files:"
+          ls -R .exports
         #   ./godot --headless --export-release linux
         #   ./godot --headless --export-release macos
         #   ./godot --headless --export-release windows
@@ -48,13 +76,15 @@ jobs:
           zip $PROJECT_NAME-html.zip -r -m *
           mv $PROJECT_NAME-html.zip ..
           cd -
-          ls
+          echo "Contents of .exports:"
+          ls -R .exports
 
       - name: Save Artifacts for Next Job
         uses: actions/upload-artifact@v4
         with:
           name: exports
           path: .exports/
+          include-hidden-files: true # .exports folder is treated as hidden
 
   Publish:
     needs: Build
