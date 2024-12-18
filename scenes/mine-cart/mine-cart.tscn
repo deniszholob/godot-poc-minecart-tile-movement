@@ -1,12 +1,12 @@
 [gd_scene load_steps=14 format=3 uid="uid://ctah1w1bu5a3r"]
 
-[ext_resource type="Script" path="res://scenes/mine-cart/mine_cart.gd" id="1_5bbny"]
+[ext_resource type="Script" path="res://scenes/mine-cart/mine-cart.gd" id="1_5bbny"]
 [ext_resource type="Texture2D" uid="uid://dit0v1dnd4e8s" path="res://assets/mine-cart.png" id="2_2w2eh"]
 [ext_resource type="Script" path="res://components/movement/mine-cart-controller.component.gd" id="2_nd2vl"]
 [ext_resource type="Script" path="res://components/input/input-device-direction.component.gd" id="3_avyul"]
 [ext_resource type="Resource" uid="uid://bxl0dq7ghfh0v" path="res://scenes/mine-cart/mine-cart-stats.data.tres" id="4_p6375"]
 [ext_resource type="Script" path="res://components/movement/move-character-sprite-animation-rotation.component.gd" id="4_s2lad"]
-[ext_resource type="PackedScene" uid="uid://dccjas1dbwg5e" path="res://scenes/mine-cart/tile_select.tscn" id="7_aoewr"]
+[ext_resource type="PackedScene" uid="uid://dccjas1dbwg5e" path="res://scenes/mine-cart/tile-select.tscn" id="7_aoewr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rn0df"]
 size = Vector2(10, 10)

@@ -10,7 +10,7 @@ const WARN_REQ_tile_map: String = "Missing Actor Node, will be set to parent by 
 		tile_map = v
 		if(Engine.is_editor_hint()): update_configuration_warnings()
 ## Label scene to show (x,y) info on
-@export var DEBUG_LABEL: PackedScene = preload('./debug_label.tscn')
+@export var DEBUG_LABEL: PackedScene = preload('./debug-label.tscn')
 ## Toggle the debug info display
 @export var show_debug_info: bool = true
 
