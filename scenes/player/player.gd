@@ -1,7 +1,7 @@
 class_name Player extends CharacterBody2D
 
 #region enum
-const GameControlObjects = preload("res://global/game-control-objects.enum.gd").GameControlObjects
+const GameControlObjects = GlobalGame.GameControlObjects
 #endregion
 
 #region @onready

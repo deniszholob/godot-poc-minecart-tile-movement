@@ -33,7 +33,7 @@ layout_mode = 2
 
 [node name="ControlType" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Control Type"
+text = "Minecart Control Type"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -43,7 +43,7 @@ layout_mode = 2
 toggle_mode = true
 button_pressed = true
 button_group = ExtResource("1_fnbp6")
-text = "Character"
+text = "Character Like"
 
 [node name="Vehicle_Relative" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2

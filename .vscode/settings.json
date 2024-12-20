@@ -74,17 +74,19 @@
     "files.trimFinalNewlines": true,
     "files.exclude": {
         ".dev": true,
+        ".github": true,
         ".godot": true,
         ".exports": true,
         ".screenshots": true,
         "export_presets.cfg": true,
-        "**/*.import": true,
-        "**/dist/": true,
+        "FUNDING.yml": true,
+        "LICENSE": true,
         "**/.editorconfig": true,
         "**/.gitattributes": true,
         "**/.gitignore": true,
         "**/.gitkeep": true,
-        "**/.gitlab-ci.yml": true
+        "**/.gitlab-ci.yml": true,
+        "**/*.import": true
     },
     "cSpell.words": [
         "minecart"

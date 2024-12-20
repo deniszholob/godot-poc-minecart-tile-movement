@@ -28,15 +28,15 @@ script = ExtResource("3_vkdyo")
 tile_map = NodePath("..")
 show_debug_info = false
 
-[node name="Player" parent="." instance=ExtResource("5_g34ee")]
-position = Vector2(24, 40)
+[node name="SceneObjects" type="Node2D" parent="."]
 
-[node name="MineCart" parent="." node_paths=PackedStringArray("tile_map") instance=ExtResource("5_s8y7k")]
+[node name="MineCart" parent="SceneObjects" node_paths=PackedStringArray("tile_map") instance=ExtResource("5_s8y7k")]
 position = Vector2(-24, 24)
-tile_map = NodePath("../TileMap")
+tile_map = NodePath("../../TileMap")
 
-[node name="GameWindowControllerComponent" type="Node" parent="."]
-script = ExtResource("1_m8uwc")
+[node name="Player" parent="SceneObjects" instance=ExtResource("5_g34ee")]
+position = Vector2(24, 40)
+scale = Vector2(0.75, 0.75)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
@@ -73,3 +73,6 @@ button_group = SubResource("ButtonGroup_74uti")
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
 color = Color(0.129412, 0.207843, 0.27451, 1)
+
+[node name="GameWindowControllerComponent" type="Node" parent="."]
+script = ExtResource("1_m8uwc")

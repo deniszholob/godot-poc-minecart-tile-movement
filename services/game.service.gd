@@ -8,7 +8,7 @@ signal control_object_changed(control: GameControlObjects)
 
 #region Enum
 const MineCartControlScheme = preload("res://components/movement/mine-cart-control-scheme.enum.gd").MineCartControlScheme
-const GameControlObjects = preload("res://global/game-control-objects.enum.gd").GameControlObjects
+const GameControlObjects = preload("res://services/game-control-objects.enum.gd").GameControlObjects
 #endregion
 
 #region vars

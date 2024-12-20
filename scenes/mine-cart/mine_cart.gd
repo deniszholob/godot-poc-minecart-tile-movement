@@ -10,8 +10,8 @@ const WARN_REQ_tile_map: String = "Missing TileMap"
 #endregion
 
 #region enum
-const MineCartControlScheme = preload("res://components/movement/mine-cart-control-scheme.enum.gd").MineCartControlScheme
-const GameControlObjects = preload("res://global/game-control-objects.enum.gd").GameControlObjects
+const MineCartControlScheme = GlobalGame.MineCartControlScheme
+const GameControlObjects = GlobalGame.GameControlObjects
 #endregion
 
 #region @export

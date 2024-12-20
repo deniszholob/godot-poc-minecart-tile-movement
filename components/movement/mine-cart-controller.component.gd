@@ -7,7 +7,7 @@ signal minecart_debug_info(debug_info: MineCartDebugInfo)
 #endregion
 
 #region enum
-const MineCartControlScheme = preload("res://components/movement/mine-cart-control-scheme.enum.gd").MineCartControlScheme
+const MineCartControlScheme = GlobalGame.MineCartControlScheme
 #endregion
 
 #region const
