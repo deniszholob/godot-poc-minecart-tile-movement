@@ -48,7 +48,8 @@ offset_right = 17.0
 offset_bottom = -10.0
 scale = Vector2(0.500293, 0.500293)
 text = "ESC = Menu/Controls
-F11 = Toggle Fullscreen"
+F11 = Toggle Fullscreen
+TAB = Change Player"
 
 [node name="TitleLabel" type="Label" parent="CanvasLayer"]
 offset_left = -192.0

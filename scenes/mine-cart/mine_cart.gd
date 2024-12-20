@@ -11,6 +11,7 @@ const WARN_REQ_tile_map: String = "Missing TileMap"
 
 #region enum
 const MineCartControlScheme = preload("res://components/movement/mine-cart-control-scheme.enum.gd").MineCartControlScheme
+const GameControlObjects = preload("res://global/game-control-objects.enum.gd").GameControlObjects
 #endregion
 
 #region @export
@@ -48,6 +49,7 @@ const MineCartControlScheme = preload("res://components/movement/mine-cart-contr
 #region var
 # Change through some game menu screen via global game state
 var control_scheme: MineCartControlScheme = MineCartControlScheme.Character
+var enabled: bool = false
 #endregion
 
 #region func: Overrides
@@ -59,7 +61,8 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 func _ready() -> void:
 	if(Engine.is_editor_hint()): return
-	GlobalGame.control_scheme_updated.connect(set_control_scheme)
+	GlobalGame.minecart_control_scheme_updated.connect(self.set_control_scheme)
+	GlobalGame.control_object_changed.connect(self._enable_minecart)
 
 func _process(delta: float) -> void:
 	if(Engine.is_editor_hint()): return
@@ -83,4 +86,7 @@ func _disable_debug_node(node: Node2D) -> void:
 	if(!node): return
 	node.visible = debug_enable
 	node.process_mode = Node.PROCESS_MODE_INHERIT if debug_enable else Node.PROCESS_MODE_DISABLED
+
+func _enable_minecart(control:GameControlObjects):
+	enabled = control == GameControlObjects.Minecart
 #endregion

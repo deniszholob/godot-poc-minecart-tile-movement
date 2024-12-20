@@ -167,7 +167,9 @@ func _determine_next_move(_delta: float) -> void:
 			next_direction = intended_relative_direction_vec * sign
 
 ## movement:vector3 (left/right, up/down, power/brake)
-func _on_movement_input_vector_update(movement: Vector3) -> void:
+func _on_movement_input_vector_update(movement_in: Vector3) -> void:
+	var movement:Vector3 = movement_in if actor.enabled else Vector3.ZERO
+
 	match actor.control_scheme:
 		MineCartControlScheme.Vehicle_Relative:
 			intended_relative_direction = round(movement.x)
