@@ -1,11 +1,15 @@
+#@tool
 ## Applies animation frames from a spritesheet
 ## Spritesheet should have 360 rotation frames
+## Also applies rotation to a pivot node
 class_name MoveCharacterSpriteAnimationRotationComponent extends Node
 
 # === Signals === #
 # === Enums === #
 enum DIRECTION { DOWN, LEFT, UP, RIGHT }
 # === Constants === #
+const WARN_REQ_sprite: String = "Missing Sprite Node!"
+
 const DIRECTION_TO_VECTOR_DIC = {
 	DIRECTION.DOWN: Vector2.DOWN,
 	DIRECTION.LEFT: Vector2.LEFT,
@@ -15,13 +19,13 @@ const DIRECTION_TO_VECTOR_DIC = {
 const FULL_CIRCLE_ANGLE: float = 2 * PI # 360 in radians
 
 #region Exports
-## Set in editor for constant direction_vector, or reference to change dynamically
+## FIXME: Set in editor for constant direction_vector, or reference to change dynamically
 @export var direction_vector: Vector2 = Vector2.ZERO
 @export_group("Sprite Setup")
-@export var sprite: Sprite2D
-# TODO: This can be simplified to just the range, or just reading the sprite v/h frames
-@export_range(4, 360, 4) var directions: int = 4
-@export var frames_per_direction: int = 1
+@export var sprite: Sprite2D:
+	set(v):
+		sprite = v
+		if(Engine.is_editor_hint()): update_configuration_warnings()
 @export var frame_start_direction: DIRECTION = DIRECTION.DOWN:
 	set(v): _frame_start_direction = DIRECTION_TO_VECTOR_DIC[v]
 @export var frames_rotation:ClockDirection = CLOCKWISE
@@ -29,15 +33,24 @@ const FULL_CIRCLE_ANGLE: float = 2 * PI # 360 in radians
 #endregion
 
 # === Public === #
-var frames_total: int = frames_per_direction * directions
-var rotation_angle_step: float = FULL_CIRCLE_ANGLE / frames_total;
+var frames_total: int = 0
+var rotation_angle_step: float = 0;
 
 # === Private === #
 var _frame_start_direction: Vector2 = Vector2.DOWN
 
-# === Onready === #
-
 #region Functions: Overrides
+# Shows warnings in editor
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings:= PackedStringArray()
+	if(!sprite): warnings.append(WARN_REQ_sprite)
+	return warnings
+
+func _ready() -> void:
+	if(Engine.is_editor_hint()): return
+	frames_total = sprite.hframes * sprite.vframes
+	rotation_angle_step = FULL_CIRCLE_ANGLE / frames_total;
+
 func _process(_delta: float) -> void:
 	if(Engine.is_editor_hint()): return
 	if(direction_vector.length()):
