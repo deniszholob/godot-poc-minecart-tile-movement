@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://gy0o7twvgvi5"]
+[gd_scene load_steps=10 format=3 uid="uid://gy0o7twvgvi5"]
 
 [ext_resource type="Script" path="res://scenes/levels/main.gd" id="1_1d8g2"]
 [ext_resource type="Script" path="res://components/game-window-controller.component.gd" id="1_m8uwc"]
 [ext_resource type="PackedScene" uid="uid://b4fjcsvexg1jl" path="res://components/debug/sbx_lab.tscn" id="2_k5gnr"]
 [ext_resource type="TileSet" uid="uid://bharj5o7bmhwc" path="res://assets/kenney-dungeon-rail_wang-fence-inside-corners_TileSet.tres" id="3_olale"]
 [ext_resource type="Script" path="res://components/debug/tile-map-debug.component.gd" id="3_vkdyo"]
+[ext_resource type="PackedScene" uid="uid://cmigrh2hisohi" path="res://scenes/player/player.tscn" id="5_g34ee"]
 [ext_resource type="PackedScene" uid="uid://ctah1w1bu5a3r" path="res://scenes/mine-cart/mine_cart.tscn" id="5_s8y7k"]
 [ext_resource type="PackedScene" uid="uid://bhm10p5o4dt6c" path="res://scenes/ui/control_scheme_menu.tscn" id="6_ch5pl"]
 
@@ -27,10 +28,12 @@ script = ExtResource("3_vkdyo")
 tile_map = NodePath("..")
 show_debug_info = false
 
+[node name="Player" parent="." instance=ExtResource("5_g34ee")]
+position = Vector2(24, 40)
+
 [node name="MineCart" parent="." node_paths=PackedStringArray("tile_map") instance=ExtResource("5_s8y7k")]
 position = Vector2(-24, 24)
 tile_map = NodePath("../TileMap")
-debug_enable = false
 
 [node name="GameWindowControllerComponent" type="Node" parent="."]
 script = ExtResource("1_m8uwc")
